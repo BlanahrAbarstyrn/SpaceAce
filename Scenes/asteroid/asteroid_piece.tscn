@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c7yymyd3p76b6"]
+
+[ext_resource type="Script" uid="uid://o3lp5amgm485" path="res://Scenes/asteroid/AsteroidPiece.cs" id="1_dd06w"]
+[ext_resource type="Texture2D" uid="uid://kwp0w20000t" path="res://Assets/Images/AsteroidPiece4.png" id="1_iameu"]
+[ext_resource type="Texture2D" uid="uid://ekhdvxog67iy" path="res://Assets/Images/AsteroidPiece2.png" id="2_pp2vx"]
+[ext_resource type="Texture2D" uid="uid://cg2bus0tow1sg" path="res://Assets/Images/AsteroidPiece3.png" id="3_eokvn"]
+[ext_resource type="Texture2D" uid="uid://cdgfnil2xd3hq" path="res://Assets/Images/AsteroidPiece5.png" id="5_j6604"]
+
+[node name="AsteroidPiece" type="Node2D" unique_id=1460090842 node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_dd06w")
+_textures = Array[Texture2D]([ExtResource("2_pp2vx"), ExtResource("3_eokvn"), ExtResource("1_iameu"), ExtResource("5_j6604")])
+_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1529076756]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_iameu")

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ipwqx3tsxg6h"]
+
+[ext_resource type="Script" uid="uid://ctw7clvu447q2" path="res://Scenes/asteroid/Asteroid.cs" id="1_2e4q6"]
+[ext_resource type="Texture2D" uid="uid://bm2sc77qtvquf" path="res://Assets/Images/Asteroid3.png" id="1_e7utm"]
+[ext_resource type="PackedScene" uid="uid://b46rc3xto4yam" path="res://Scenes/asteroid/asteroid_explosion.tscn" id="2_nef1w"]
+[ext_resource type="Texture2D" uid="uid://odwsu1riin67" path="res://Assets/Images/Asteroid1.png" id="2_xn1jp"]
+[ext_resource type="Texture2D" uid="uid://54kdtng6jflk" path="res://Assets/Images/Asteroid2.png" id="3_nef1w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7utm"]
+radius = 91.00549
+
+[node name="Asteroid" type="Node2D" unique_id=901102489 node_paths=PackedStringArray("_sprite", "_hitArea")]
+script = ExtResource("1_2e4q6")
+_lifeTime = 180.0
+_explosionScene = ExtResource("2_nef1w")
+_sprite = NodePath("Sprite2D")
+_hitArea = NodePath("HitArea")
+_textures = Array[Texture2D]([ExtResource("2_xn1jp"), ExtResource("3_nef1w"), ExtResource("1_e7utm")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=413970240]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_e7utm")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=156344967]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1233898830]
+shape = SubResource("CircleShape2D_e7utm")

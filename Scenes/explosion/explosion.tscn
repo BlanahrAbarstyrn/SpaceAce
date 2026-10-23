@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bo7mfvx3jabwa"]
+
+[ext_resource type="Texture2D" uid="uid://d1ioqdx2yl7o4" path="res://Assets/Textures/scorch_02.png" id="1_b0h1c"]
+[ext_resource type="Script" uid="uid://bsq2qyk1wgi7l" path="res://Scenes/explosion/Explosion.cs" id="1_pdvjp"]
+[ext_resource type="AudioStream" uid="uid://dhavfqmyg4gtl" path="res://Assets/Sounds/AsteroidExplosion.wav" id="2_pdvjp"]
+
+[sub_resource type="Curve" id="Curve_ys1sg"]
+_data = [Vector2(0.0059523806, 0), 0.0, 0.0, 0, 0, Vector2(0.26190478, 1), 0.0, 0.0, 0, 0, Vector2(0.8720238, 1), 0.0, 0.0, 0, 0, Vector2(0.99999994, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_pdvjp"]
+offsets = PackedFloat32Array(0, 0.36900958, 0.7204473, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.8648706, 0.79116565, 0.2106811, 1, 0.27430758, 0.03498151, 0.06391296, 1, 0.27450982, 0.03529412, 0.0627451, 0)
+
+[node name="Explosion" type="Node2D" unique_id=584377276 node_paths=PackedStringArray("_cpuParticles", "_audioStreamPlayer")]
+z_index = 100
+script = ExtResource("1_pdvjp")
+_cpuParticles = NodePath("CPUParticles2D")
+_audioStreamPlayer = NodePath("AudioStreamPlayer2D")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=887715989]
+emitting = false
+amount = 32
+texture = ExtResource("1_b0h1c")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.78
+randomness = 0.36
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+radial_accel_min = 20.0
+radial_accel_max = 30.0
+damping_min = 6.0
+damping_max = 8.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_ys1sg")
+color_ramp = SubResource("Gradient_pdvjp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1733731854]
+stream = ExtResource("2_pdvjp")
+volume_db = -10.0

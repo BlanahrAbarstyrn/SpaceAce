@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b46rc3xto4yam"]
+
+[ext_resource type="Script" uid="uid://b601w2cphrcx6" path="res://Scenes/asteroid/AsteroidExplosion.cs" id="1_g68tm"]
+[ext_resource type="PackedScene" uid="uid://c7yymyd3p76b6" path="res://Scenes/asteroid/asteroid_piece.tscn" id="2_0l1fq"]
+
+[node name="AsteroidExplosion" type="Node2D" unique_id=269231563 node_paths=PackedStringArray("_timer", "_piecesHolder", "_asteroidExplosionSound")]
+script = ExtResource("1_g68tm")
+_timer = NodePath("Timer")
+_piecesHolder = NodePath("Pieces")
+_asteroidExplosionSound = NodePath("AsteroidExplosionSound")
+
+[node name="Timer" type="Timer" parent="." unique_id=628766569]
+wait_time = 3.0
+one_shot = true
+
+[node name="AsteroidExplosionSound" type="AudioStreamPlayer" parent="." unique_id=1301373782]
+
+[node name="Pieces" type="Node2D" parent="." unique_id=473957557]
+
+[node name="AsteroidPiece" parent="Pieces" unique_id=1460090842 instance=ExtResource("2_0l1fq")]
+position = Vector2(-17, -23)
+
+[node name="AsteroidPiece2" parent="Pieces" unique_id=665787088 instance=ExtResource("2_0l1fq")]
+position = Vector2(10, -26)
+
+[node name="AsteroidPiece3" parent="Pieces" unique_id=1052310896 instance=ExtResource("2_0l1fq")]
+position = Vector2(29, -7)
+
+[node name="AsteroidPiece4" parent="Pieces" unique_id=826151762 instance=ExtResource("2_0l1fq")]
+position = Vector2(-32, -1)
+
+[node name="AsteroidPiece5" parent="Pieces" unique_id=1889677490 instance=ExtResource("2_0l1fq")]
+position = Vector2(-18, 18)
+
+[node name="AsteroidPiece6" parent="Pieces" unique_id=176188242 instance=ExtResource("2_0l1fq")]
+position = Vector2(0, 31)
+
+[node name="AsteroidPiece7" parent="Pieces" unique_id=904162691 instance=ExtResource("2_0l1fq")]
+position = Vector2(17, 15)
+
+[node name="AsteroidPiece8" parent="Pieces" unique_id=2010317080 instance=ExtResource("2_0l1fq")]
+position = Vector2(-3, 2)

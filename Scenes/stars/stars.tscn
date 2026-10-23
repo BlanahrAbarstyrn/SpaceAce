@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bvd66kr7ts8d3"]
+
+[ext_resource type="Texture2D" uid="uid://c44w35d14f6sf" path="res://Assets/Textures/StarDot.png" id="1_qufgl"]
+[ext_resource type="Texture2D" uid="uid://d2xo35kjq5b7n" path="res://Assets/Textures/flame_04.png" id="2_uvsnw"]
+
+[sub_resource type="Gradient" id="Gradient_qufgl"]
+offsets = PackedFloat32Array(0, 0.48029557, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.63457674, 0.8064425, 0.9954583, 1, 0.9490196, 0.8, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_uvsnw"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.5568628)
+
+[sub_resource type="Gradient" id="Gradient_qmlyd"]
+colors = PackedColorArray(3.1766297e-06, 0.41046718, 0.54943645, 1, 0.64544225, 0.21189916, 0.35618356, 1)
+
+[node name="Stars" type="Node2D" unique_id=612652137]
+
+[node name="BackgroundParticles" type="CPUParticles2D" parent="." unique_id=1485516136]
+position = Vector2(720, -540)
+amount = 512
+texture = ExtResource("1_qufgl")
+lifetime = 40.0
+preprocess = 40.0
+emission_shape = 3
+emission_rect_extents = Vector2(720, 540)
+direction = Vector2(0, 1)
+spread = 2.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.3
+scale_amount_max = 0.6
+color_ramp = SubResource("Gradient_qufgl")
+
+[node name="ForegroundParticles" type="CPUParticles2D" parent="." unique_id=1785925018]
+position = Vector2(720, -540)
+amount = 256
+texture = ExtResource("1_qufgl")
+lifetime = 40.0
+preprocess = 40.0
+emission_shape = 3
+emission_rect_extents = Vector2(720, 540)
+direction = Vector2(0, 1)
+spread = 2.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
+scale_amount_min = 0.8
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_qufgl")
+
+[node name="SpaceFog" type="CPUParticles2D" parent="." unique_id=454423534]
+position = Vector2(691, -382)
+amount = 12
+texture = ExtResource("2_uvsnw")
+lifetime = 180.0
+preprocess = 90.0
+emission_shape = 3
+emission_rect_extents = Vector2(600, 1)
+direction = Vector2(0, 1)
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+angular_velocity_min = 1.0
+angular_velocity_max = 2.0
+angle_max = 360.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_uvsnw")
+color_initial_ramp = SubResource("Gradient_qmlyd")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b3kat2sxu5f6w"]
+
+[ext_resource type="PackedScene" uid="uid://bvd66kr7ts8d3" path="res://Scenes/stars/stars.tscn" id="1_olbeb"]
+[ext_resource type="PackedScene" uid="uid://c4l87jfqs05wy" path="res://Scenes/player/player.tscn" id="2_qtcrp"]
+[ext_resource type="PackedScene" uid="uid://ces6q37wwbm12" path="res://Scenes/object_container/object_container.tscn" id="3_q0jpn"]
+[ext_resource type="PackedScene" uid="uid://b21gmjx41yhnb" path="res://Scenes/spawner/spawner.tscn" id="4_vuhcl"]
+[ext_resource type="PackedScene" uid="uid://cl1l5dcu8dqwk" path="res://Scenes/homing_missile/homing_missile.tscn" id="5_m88n2"]
+[ext_resource type="PackedScene" uid="uid://dhmbb8btui3hp" path="res://Scenes/wave_manager/wave_manager.tscn" id="6_3l3hm"]
+
+[node name="Level" type="Node" unique_id=632676236]
+
+[node name="Stars" parent="." unique_id=612652137 instance=ExtResource("1_olbeb")]
+
+[node name="Player" parent="." unique_id=1552748203 instance=ExtResource("2_qtcrp")]
+position = Vector2(703, 670)
+
+[node name="ObjectContainer" parent="." unique_id=751665763 instance=ExtResource("3_q0jpn")]
+_testScene = ExtResource("5_m88n2")
+
+[node name="Spawner" parent="." unique_id=761527286 instance=ExtResource("4_vuhcl")]
+
+[node name="WaveManager" parent="." unique_id=939765624 instance=ExtResource("6_3l3hm")]

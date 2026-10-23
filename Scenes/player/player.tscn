@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c4l87jfqs05wy"]
+
+[ext_resource type="Texture2D" uid="uid://y6tk7g15n0kw" path="res://Assets/Images/player.png" id="1_8p05u"]
+[ext_resource type="PackedScene" uid="uid://ccdplhnvcs2id" path="res://Scenes/player/player_thrust/player_thrust.tscn" id="1_eo61r"]
+[ext_resource type="Script" uid="uid://dpkdmjqm0pf0q" path="res://Scenes/player/Player.cs" id="1_mxepk"]
+[ext_resource type="PackedScene" uid="uid://crjigo6gv5w47" path="res://Scenes/bullet/player_laser.tscn" id="2_e41v5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eo61r"]
+radius = 50.358715
+
+[node name="Player" type="Area2D" unique_id=1552748203 node_paths=PackedStringArray("_shootPoint")]
+script = ExtResource("1_mxepk")
+_playerLaser = ExtResource("2_e41v5")
+_shootPoint = NodePath("ShootPoint")
+
+[node name="PlayerThrust" parent="." unique_id=406706067 instance=ExtResource("1_eo61r")]
+position = Vector2(50, 0)
+
+[node name="PlayerThrust2" parent="." unique_id=1868802077 instance=ExtResource("1_eo61r")]
+position = Vector2(-50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1823975946]
+texture = ExtResource("1_8p05u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1398121986]
+shape = SubResource("CircleShape2D_eo61r")
+
+[node name="ShootPoint" type="Marker2D" parent="." unique_id=1568640073]
+position = Vector2(0, -90)

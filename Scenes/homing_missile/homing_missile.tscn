@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cl1l5dcu8dqwk"]
+
+[ext_resource type="Texture2D" uid="uid://be7s4athj7eho" path="res://Assets/Images/HomingMissile.png" id="1_8ird0"]
+[ext_resource type="Texture2D" uid="uid://bkdyygvheb3kc" path="res://Assets/Textures/ParticleDot16.png" id="1_mc4vy"]
+[ext_resource type="Script" uid="uid://8xsla355mxnf" path="res://Scenes/homing_missile/HomingMissile.cs" id="1_p3fmc"]
+
+[sub_resource type="Curve" id="Curve_mc4vy"]
+_data = [Vector2(0, 0.7981651), 0.0, 0.0, 0, 0, Vector2(0.13173652, 1), 0.0, 0.0, 0, 0, Vector2(0.38622752, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_p3fmc"]
+offsets = PackedFloat32Array(0, 0.32747602, 0.71086264, 1)
+colors = PackedColorArray(0.5390161, 0.024848005, 0.28470108, 1, 0.10980392, 0.45490196, 0.7254902, 1, 0.9490196, 0.54509807, 0.15686275, 0.61960787, 1, 0.2627451, 0.20392157, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ird0"]
+radius = 23.0
+height = 80.0
+
+[node name="HomingMissile" type="Node2D" unique_id=102629725 node_paths=PackedStringArray("_hitArea", "_invincibleTimer")]
+script = ExtResource("1_p3fmc")
+_hitArea = NodePath("HitArea")
+_rotationSpeed = 1.0
+_invincibleTimer = NodePath("Timer")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=917532617]
+position = Vector2(-40, 0)
+amount = 64
+texture = ExtResource("1_mc4vy")
+lifetime = 0.5
+lifetime_randomness = 0.54
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(-1, 0)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+scale_amount_min = 0.8
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_mc4vy")
+color_ramp = SubResource("Gradient_p3fmc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=768844636]
+rotation = 1.5707964
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_8ird0")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=598483882]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1689547989]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8ird0")
+
+[node name="Timer" type="Timer" parent="." unique_id=1041698343]
+wait_time = 2.0
+one_shot = true

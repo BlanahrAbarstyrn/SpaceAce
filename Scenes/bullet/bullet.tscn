@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://xqfdj8pkmoy6"]
+
+[ext_resource type="Script" uid="uid://bvofmgi82xoii" path="res://Scenes/bullet/Bullet.cs" id="1_kkylu"]
+[ext_resource type="PackedScene" uid="uid://i74ym6kfkp3m" path="res://Scenes/life_time/life_time.tscn" id="2_tlk1b"]
+
+[node name="Bullet" type="Area2D" unique_id=1054310593 node_paths=PackedStringArray("_notifier", "_lifeTime")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_kkylu")
+_notifier = NodePath("Notifier")
+_lifeTime = NodePath("LifeTime")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1627973769]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=972069271]
+
+[node name="Notifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=1699903845]
+
+[node name="ExplosionPosition" type="Marker2D" parent="." unique_id=1846001439]
+
+[node name="LaunchSound" type="AudioStreamPlayer2D" parent="." unique_id=684988479]
+
+[node name="LifeTime" parent="." unique_id=1144690936 instance=ExtResource("2_tlk1b")]
+_lifeTime = 30.0

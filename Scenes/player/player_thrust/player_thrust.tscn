@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ccdplhnvcs2id"]
+
+[ext_resource type="Texture2D" uid="uid://bkdyygvheb3kc" path="res://Assets/Textures/ParticleDot16.png" id="1_lniki"]
+
+[sub_resource type="Curve" id="Curve_vx62f"]
+_data = [Vector2(0.74914086, 0.9967564), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bu1sd"]
+colors = PackedColorArray(0.6431373, 0, 0, 1, 1, 0.5372549, 0.03529412, 1)
+
+[node name="PlayerThrust" type="CPUParticles2D" unique_id=406706067]
+amount = 96
+texture = ExtResource("1_lniki")
+lifetime = 0.6
+preprocess = 5.0
+lifetime_randomness = 0.44
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, 1)
+spread = 7.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 160.0
+scale_amount_min = 0.9
+scale_amount_curve = SubResource("Curve_vx62f")
+color_ramp = SubResource("Gradient_bu1sd")

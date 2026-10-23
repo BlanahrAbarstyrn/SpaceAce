@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cvo6aaqwjbmkw"]
+
+[ext_resource type="PackedScene" uid="uid://bx3ninphuqcak" path="res://Scenes/enemy_base/enemy_base.tscn" id="1_pd0e8"]
+[ext_resource type="PackedScene" uid="uid://d53cw6m3ya8q" path="res://Scenes/bullet/enemy_bomb.tscn" id="2_jgj1h"]
+[ext_resource type="Texture2D" uid="uid://u6jmjoem641h" path="res://Assets/Images/Enemy3.png" id="2_uhf35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgj1h"]
+size = Vector2(98, 39)
+
+[node name="EnemyRobot" unique_id=1580803156 instance=ExtResource("1_pd0e8")]
+_speed = 180.0
+_bulletScene = ExtResource("2_jgj1h")
+_bulletWaitTime = 6.0
+_bulletWaitTimeVariance = 2.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1832030770]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_uhf35")
+
+[node name="CollisionShape2D" parent="HitArea" parent_id_path=PackedInt32Array(1490482353) index="0" unique_id=1837252726]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_jgj1h")
+
+[node name="LaserTimer" parent="." index="2" unique_id=1120059897]
+wait_time = 3.0
+
+[node name="HealthBar" parent="." index="4" unique_id=1442029736]
+offset_left = -50.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = -54.0

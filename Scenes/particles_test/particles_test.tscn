@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ckubol8g22u2j"]
+
+[ext_resource type="Texture2D" uid="uid://y6tk7g15n0kw" path="res://Assets/Images/player.png" id="1_eyr1s"]
+
+[node name="ParticlesTest" type="Node2D" unique_id=631754816]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1244520853]
+emitting = false
+texture = ExtResource("1_eyr1s")

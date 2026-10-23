@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dva55d7yvu01y"]
+
+[ext_resource type="PackedScene" uid="uid://bo7mfvx3jabwa" path="res://Scenes/explosion/explosion.tscn" id="1_kykdm"]
+[ext_resource type="Texture2D" uid="uid://kgx6b0dbviac" path="res://Assets/Textures/MagicSmall.png" id="2_6qjl8"]
+[ext_resource type="AudioStream" uid="uid://c4j56bmin8slp" path="res://Assets/Sounds/252198__pepingrillin__rocket_impact_short.wav" id="2_kakr1"]
+
+[sub_resource type="Gradient" id="Gradient_6qjl8"]
+offsets = PackedFloat32Array(0, 0.23333333, 0.75714284, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.25278956, 1.14975, 1.0308098, 1, 0.5254902, 0.7019608, 0.13333334, 1, 0.5254902, 0.7019608, 0.13333334, 0)
+
+[node name="PlayerLaserExplosion" unique_id=584377276 instance=ExtResource("1_kykdm")]
+z_index = 120
+
+[node name="CPUParticles2D" parent="." index="0" unique_id=887715989]
+texture = ExtResource("2_6qjl8")
+lifetime = 2.0
+emission_sphere_radius = 10.0
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_6qjl8")
+
+[node name="AudioStreamPlayer2D" parent="." index="1" unique_id=1733731854]
+stream = ExtResource("2_kakr1")
