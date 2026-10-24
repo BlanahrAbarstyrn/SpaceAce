@@ -11,5 +11,6 @@ value = 51.0
 nine_patch_stretch = true
 texture_under = ExtResource("1_wi0ou")
 texture_progress = ExtResource("1_wi0ou")
+tint_under = Color(0.21176471, 0.09803922, 0.2901961, 1)
 tint_progress = Color(0.09019608, 0.13725491, 1, 1)
 script = ExtResource("2_q51lc")

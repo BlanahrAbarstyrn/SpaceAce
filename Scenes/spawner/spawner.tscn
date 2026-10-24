@@ -23,7 +23,7 @@ _asteroidScene = ExtResource("2_7jrkt")
 _asteroidSpawnTimer = NodePath("AsteroidTimer")
 
 [node name="AsteroidTimer" type="Timer" parent="." unique_id=1372652215]
-wait_time = 4.0
+wait_time = 10.0
 autostart = true
 
 [node name="AsteroidSpawnPath" type="Path2D" parent="." unique_id=1285076111]

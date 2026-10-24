@@ -8,7 +8,7 @@ public partial class Asteroid : Node2D
 	[Export] private int _hit = 2;
 	[Export] private float _speed = 50.0f;
 	[Export] private float _rotationSpeedDegrees = 10.0f;
-	[Export] private float _lifeTime = 10.0f;
+	[Export] private Timer _lifeTimer;
 
 	[Export] private PackedScene _explosionScene;
 	[Export] private Sprite2D _sprite;
@@ -16,7 +16,6 @@ public partial class Asteroid : Node2D
 	[Export] private Godot.Collections.Array<Texture2D> _textures;
 	
 	Vector2 _velocity = Vector2.Right;
-	private float _alive = 0.0f;
 	
 	public void SetSpawnAndTarget(Vector2 spawnPosition, Vector2 targetPosition)
 	{
@@ -30,8 +29,8 @@ public partial class Asteroid : Node2D
 	public override void _Ready()
 	{
 		_sprite.Texture = _textures.PickRandom();
-		//_velocity *= _speed;
 		_hitArea.AreaEntered += OnHitAreaEntered;
+		_lifeTimer.Timeout += Blowup;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,11 +38,7 @@ public partial class Asteroid : Node2D
 	{
 		Position += _velocity * (float)delta;
 		RotationDegrees += _rotationSpeedDegrees * (float)delta;
-		_alive += (float)delta;
-		if (_alive >= _lifeTime)
-		{
-			Blowup();
-		}
+		
 	}
 
 	private void Blowup()

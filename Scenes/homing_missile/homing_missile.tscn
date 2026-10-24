@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://be7s4athj7eho" path="res://Assets/Images/HomingMissile.png" id="1_8ird0"]
 [ext_resource type="Texture2D" uid="uid://bkdyygvheb3kc" path="res://Assets/Textures/ParticleDot16.png" id="1_mc4vy"]
 [ext_resource type="Script" uid="uid://8xsla355mxnf" path="res://Scenes/homing_missile/HomingMissile.cs" id="1_p3fmc"]
+[ext_resource type="PackedScene" uid="uid://bo7mfvx3jabwa" path="res://Scenes/explosion/explosion.tscn" id="2_k3vt8"]
 
 [sub_resource type="Curve" id="Curve_mc4vy"]
 _data = [Vector2(0, 0.7981651), 0.0, 0.0, 0, 0, Vector2(0.13173652, 1), 0.0, 0.0, 0, 0, Vector2(0.38622752, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -19,8 +20,10 @@ height = 80.0
 [node name="HomingMissile" type="Node2D" unique_id=102629725 node_paths=PackedStringArray("_hitArea", "_invincibleTimer")]
 script = ExtResource("1_p3fmc")
 _hitArea = NodePath("HitArea")
-_rotationSpeed = 1.0
+_speed = 500.0
+_rotationSpeed = 0.8
 _invincibleTimer = NodePath("Timer")
+_explosionScene = ExtResource("2_k3vt8")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=917532617]
 position = Vector2(-40, 0)
@@ -46,13 +49,12 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_8ird0")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=598483882]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 72
+collision_mask = 37
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1689547989]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8ird0")
 
 [node name="Timer" type="Timer" parent="." unique_id=1041698343]
-wait_time = 2.0
 one_shot = true

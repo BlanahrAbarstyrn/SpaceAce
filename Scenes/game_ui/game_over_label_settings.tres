@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dpx5ak1sjct2a"]
+
+[ext_resource type="FontFile" uid="uid://cn44u8ysia4jj" path="res://Assets/Fonts/Audiowide-Regular.ttf" id="1_acbai"]
+
+[resource]
+font = ExtResource("1_acbai")
+font_size = 124
+font_color = Color(1, 0.28235295, 0.44705883, 1)
+outline_size = 8
+outline_color = Color(0.3372549, 0.75686276, 1, 1)

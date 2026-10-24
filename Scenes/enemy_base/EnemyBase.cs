@@ -15,9 +15,11 @@ public partial class EnemyBase : PathFollow2D
 	[Export] private HealthBar _healthBar;
 	[Export] private PackedScene _bulletScene;
 	[Export] private PackedScene _explosionScene;
+	[Export] private PackedScene _homingMissile;
 	[Export] private Timer _laserTimer;
 	[Export] private float _bulletWaitTime = 3.0f;
 	[Export] private float _bulletWaitTimeVariance = 0.5f;
+	[Export] private float _spawnChance = 0.25f;
 
 	public override void _Ready()
 	{
@@ -42,6 +44,15 @@ public partial class EnemyBase : PathFollow2D
 		}
 	}
 
+	private void SpawnHomingMissile()
+	{
+		if (GD.Randf() < _spawnChance)
+		{
+			SignalManager.EmitOnSpawnPoolObject(GlobalPosition, _homingMissile);
+		}
+		
+	}
+	
 	private void FireWeapon()
 	{
 		if (_bulletScene != null)
@@ -58,6 +69,7 @@ public partial class EnemyBase : PathFollow2D
 
 	private void OnHealthBarDied()
 	{
+		SpawnHomingMissile();
 		SignalManager.EmitOnSpawnPoolObject(GlobalPosition, _explosionScene);
 		SpaceUtils.ActivateArea2D(_hitArea, false);
 		Tween tween = CreateTween();

@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dkt2afsntfbnr"]
+
+[ext_resource type="Script" uid="uid://be4d5y85iqur7" path="res://Scenes/game_ui/GameUi.cs" id="1_h0iyj"]
+[ext_resource type="PackedScene" uid="uid://bsqakaocrbhfg" path="res://Scenes/health_bar/health_bar.tscn" id="1_kb5vf"]
+[ext_resource type="LabelSettings" uid="uid://cnd0j7v4aswt4" path="res://Scenes/game_ui/score_label_settings.tres" id="2_8ltpb"]
+[ext_resource type="LabelSettings" uid="uid://dpx5ak1sjct2a" path="res://Scenes/game_ui/game_over_label_settings.tres" id="3_qmmd8"]
+[ext_resource type="AudioStream" uid="uid://c3hdt24c41jlp" path="res://Assets/Sounds/487124__sjleilani__game-over.mp3" id="4_2ucyi"]
+[ext_resource type="AudioStream" uid="uid://8lukbk3modqu" path="res://Assets/Sounds/830558__universfield__dark-80s-sci-fi-atmosphere.mp3" id="5_2ucyi"]
+
+[node name="GameUi" type="Control" unique_id=797840680 node_paths=PackedStringArray("_healthBarScene", "_scoreLabel", "_gameOverColorRect", "_gameMusic", "_gameOverSound")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h0iyj")
+_healthBarScene = NodePath("MarginContainer/HealthBar")
+_scoreLabel = NodePath("MarginContainer/Label")
+_gameOverColorRect = NodePath("GameOverColorRect")
+_gameMusic = NodePath("GameMusic")
+_gameOverSound = NodePath("GameOverSound")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=427169946]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HealthBar" parent="MarginContainer" unique_id=1442029736 instance=ExtResource("1_kb5vf")]
+custom_minimum_size = Vector2(300, 36)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1980738652]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "9999999"
+label_settings = ExtResource("2_8ltpb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverColorRect" type="ColorRect" parent="." unique_id=1686402414]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20784314, 0.13333334, 0.20784314, 0.7019608)
+
+[node name="Label" type="Label" parent="GameOverColorRect" unique_id=1648118356]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -11.5
+offset_right = 50.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER!!"
+label_settings = ExtResource("3_qmmd8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="." unique_id=1850599380]
+stream = ExtResource("4_2ucyi")
+volume_db = -10.0
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=341602166]
+stream = ExtResource("5_2ucyi")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true

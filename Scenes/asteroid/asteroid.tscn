@@ -9,9 +9,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7utm"]
 radius = 91.00549
 
-[node name="Asteroid" type="Node2D" unique_id=901102489 node_paths=PackedStringArray("_sprite", "_hitArea")]
+[node name="Asteroid" type="Node2D" unique_id=901102489 node_paths=PackedStringArray("_lifeTimer", "_sprite", "_hitArea")]
 script = ExtResource("1_2e4q6")
-_lifeTime = 180.0
+_lifeTimer = NodePath("Timer")
 _explosionScene = ExtResource("2_nef1w")
 _sprite = NodePath("Sprite2D")
 _hitArea = NodePath("HitArea")
@@ -27,3 +27,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1233898830]
 shape = SubResource("CircleShape2D_e7utm")
+
+[node name="Timer" type="Timer" parent="." unique_id=368571792]
+wait_time = 60.0
+one_shot = true
+autostart = true

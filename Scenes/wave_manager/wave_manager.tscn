@@ -8,17 +8,17 @@
 [sub_resource type="Resource" id="Resource_w5pgm"]
 script = ExtResource("2_v0u8u")
 EnemyScene = ExtResource("3_4chei")
-EnemyCount = 6
-SpawnInterval = 1.0
-WaveInterval = 4.0
+EnemyCount = 8
+SpawnInterval = 0.8
+WaveInterval = 3.0
 metadata/_custom_type_script = "uid://pnjtn41k8e6c"
 
 [sub_resource type="Resource" id="Resource_2ot54"]
 script = ExtResource("2_v0u8u")
 EnemyScene = ExtResource("4_0bx5w")
-EnemyCount = 8
-SpawnInterval = 1.0
-WaveInterval = 4.0
+EnemyCount = 5
+SpawnInterval = 1.5
+WaveInterval = 6.0
 metadata/_custom_type_script = "uid://pnjtn41k8e6c"
 
 [sub_resource type="Curve2D" id="Curve2D_raul8"]

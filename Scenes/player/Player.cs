@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SpaceAce.Globals;
+using SpaceAce.Scenes.bullet;
 
 namespace SpaceAce.Scenes.player;
 public partial class Player : Area2D
@@ -24,6 +25,7 @@ public partial class Player : Area2D
 	public override void _Ready()
 	{
 		SetLimits();
+		AreaEntered += OnAreaEntered;
 	}
 
 	private void SetLimits()
@@ -52,5 +54,12 @@ public partial class Player : Area2D
 			);
 		return v.Normalized(); // .Normalized() prevents speeding up in a diagonal direction
 	}
-	
+
+	private void OnAreaEntered(Area2D area)
+	{
+		if (area is Bullet bullet)
+		{
+			SignalManager.EmitOnPlayerTakeDamage(bullet.Damage);
+		}
+	}
 }

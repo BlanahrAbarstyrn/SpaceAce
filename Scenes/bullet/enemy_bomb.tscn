@@ -3,19 +3,20 @@
 [ext_resource type="PackedScene" uid="uid://xqfdj8pkmoy6" path="res://Scenes/bullet/bullet.tscn" id="1_8pn3y"]
 [ext_resource type="PackedScene" uid="uid://bb3kncmirif5t" path="res://Scenes/explosion/enemy_laser_explosion.tscn" id="2_baw2g"]
 [ext_resource type="Texture2D" uid="uid://ccm4gp4ggbf2k" path="res://Assets/Images/Bomb.png" id="2_l4ru8"]
+[ext_resource type="AudioStream" uid="uid://bwrh48v2l3152" path="res://Assets/Sounds/685916_whoosh.wav" id="4_baw2g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8pn3y"]
 radius = 21.023796
 
-[node name="EnemyBomb" unique_id=1054310593 node_paths=PackedStringArray("_explosionMarker") instance=ExtResource("1_8pn3y")]
+[node name="EnemyBomb" unique_id=1054310593 instance=ExtResource("1_8pn3y")]
 position = Vector2(4, 8)
 collision_layer = 72
-collision_mask = 5
+collision_mask = 37
 _bulletSpeed = 100.0
 _bulletDirection = Vector2(0, 1)
 _towardsPlayer = true
 _explosionScene = ExtResource("2_baw2g")
-_explosionMarker = NodePath("ExplosionPosition")
+_damage = 5
 
 [node name="Sprite2D" parent="." index="0" unique_id=1627973769]
 scale = Vector2(0.6, 0.6)
@@ -27,3 +28,6 @@ shape = SubResource("CircleShape2D_8pn3y")
 
 [node name="Notifier" parent="." index="2" unique_id=1699903845]
 rect = Rect2(-27, -40, 55, 81)
+
+[node name="LaunchSound" parent="." index="4" unique_id=684988479]
+stream = ExtResource("4_baw2g")

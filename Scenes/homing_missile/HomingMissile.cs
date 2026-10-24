@@ -2,6 +2,7 @@ using Godot;
 using System;
 using SpaceAce.Classes;
 using SpaceAce.Contracts;
+using SpaceAce.Globals;
 using SpaceAce.Scenes.player;
 
 namespace SpaceAce.Scenes.homing_missile;
@@ -9,8 +10,9 @@ public partial class HomingMissile : Node2D, iPool_Item
 {
 	[Export] private Area2D _hitArea;
 	[Export] private float _speed = 50.0f;
-	[Export] private float _rotationSpeed = 4.0f;
+	[Export] private float _rotationSpeed = 2.0f;
 	[Export] private Timer _invincibleTimer;
+	[Export] private PackedScene _explosionScene;
 	
 	private Player _player;
 	private bool _isInvincible;
@@ -63,6 +65,7 @@ public partial class HomingMissile : Node2D, iPool_Item
 	private void OnHitAreaEntered(Area2D area)
 	{
 		if (_isInvincible) return;
+		SignalManager.EmitOnSpawnPoolObject(GlobalPosition, _explosionScene);
 		Deactivate();
 	}
 

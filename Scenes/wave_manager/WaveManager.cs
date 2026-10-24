@@ -22,10 +22,7 @@ public partial class WaveManager : Node
 	{
 		foreach (var node in _pathsHolder.GetChildren())
 		{
-			if(node is Path2D path) 
-			{
-				_pathsList.Add(node as Path2D);
-			}
+			if(node is Path2D path) _pathsList.Add(path);
 		}
 
 		if (_pathsList.Count == 0 || _waves.Count == 0)
@@ -55,7 +52,7 @@ public partial class WaveManager : Node
 		_currentPath.AddChild(enemy);
 		_enemiesSpawned++;
 
-		if (_enemiesSpawned == _waves.Count)
+		if (_enemiesSpawned == _currentWave.EnemyCount)
 		{
 			_shipTimer.Stop();
 			_waveTimer.Start(_currentWave.WaveInterval);

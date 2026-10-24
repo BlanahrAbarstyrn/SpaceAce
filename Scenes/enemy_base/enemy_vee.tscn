@@ -13,6 +13,7 @@ _speed = 200.0
 _bulletScene = ExtResource("2_8mmk2")
 _bulletWaitTime = 5.0
 _bulletWaitTimeVariance = 2.0
+_spawnChance = 0.3
 
 [node name="Sprite2D" parent="." index="0" unique_id=1832030770]
 rotation = 3.1415927
@@ -33,3 +34,7 @@ offset_left = -50.0
 offset_top = -60.0
 offset_right = 50.0
 offset_bottom = -54.0
+_levelLow = 1
+_levelMedium = 3
+_maxHealth = 5
+_startHealth = 5

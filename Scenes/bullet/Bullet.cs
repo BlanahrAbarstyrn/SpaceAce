@@ -8,16 +8,17 @@ using SpaceAce.Scenes.player;
 namespace SpaceAce.Scenes.bullet;
 public partial class Bullet : Area2D, iPool_Item
 {
+	[Export] private AudioStreamPlayer2D _launchSound;
 	[Export] private float _bulletSpeed = 350;
 	[Export] private Vector2 _bulletDirection = Vector2.Zero;
 	[Export] private bool _towardsPlayer = false;
 	[Export] private VisibleOnScreenNotifier2D _notifier;
-	[Export] private LifeTime _lifeTime;
+	[Export] private Timer _lifeTimer;
 	[Export] private PackedScene _explosionScene;
 	[Export] private Marker2D _explosionMarker;
 	[Export] private bool _usesMarker;
 	[Export] private float _explosionMargin = 30.0f;
-	[Export] private int _damage = 5;
+	[Export] private int _damage = 2;
 	
 	public int Damage => _damage;
 	
@@ -40,7 +41,7 @@ public partial class Bullet : Area2D, iPool_Item
 			}
 		}
 		
-		_lifeTime.OnLifeTimeExpired += OnLifeTimeExpired;
+		_lifeTimer.Timeout += OnLifeTimerExpired;
 		_notifier.ScreenExited += OnScreenExited;
 		AreaEntered += OnAreaEntered;
 		Deactivate(); // start hidden and ready to use
@@ -53,10 +54,9 @@ public partial class Bullet : Area2D, iPool_Item
 		Position += _velocity * (float)delta;
 	}
 
-	private void OnLifeTimeExpired()
+	private void OnLifeTimerExpired()
 	{
-		//GD.Print($"{Name} OnLifeTimeExpired");
-		//CallDeferred(MethodName.QueueFree);
+		Deactivate();
 	}
 
 	private void OnScreenExited()
@@ -87,6 +87,7 @@ public partial class Bullet : Area2D, iPool_Item
 
 	public void Activate()
 	{
+		_lifeTimer.Start();
 		SpaceUtils.ActivateArea2D(this, true);
 		if (_towardsPlayer && _player != null)
 		{
@@ -95,10 +96,12 @@ public partial class Bullet : Area2D, iPool_Item
 		}
 		_velocity = _bulletDirection * _bulletSpeed;
 		SetPhysicsProcess(true);
+		_launchSound.Play();
 	}
 
 	public void Deactivate()
 	{
+		_lifeTimer.Stop();
 		SpaceUtils.ActivateArea2D(this, false);
 		SetPhysicsProcess(false);
 		Hide();

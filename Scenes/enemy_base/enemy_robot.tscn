@@ -12,6 +12,7 @@ _speed = 180.0
 _bulletScene = ExtResource("2_jgj1h")
 _bulletWaitTime = 6.0
 _bulletWaitTimeVariance = 2.0
+_spawnChance = 0.2
 
 [node name="Sprite2D" parent="." index="0" unique_id=1832030770]
 scale = Vector2(1.1, 1.1)
@@ -22,10 +23,14 @@ position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_jgj1h")
 
 [node name="LaserTimer" parent="." index="2" unique_id=1120059897]
-wait_time = 3.0
+wait_time = 10.0
 
 [node name="HealthBar" parent="." index="4" unique_id=1442029736]
 offset_left = -50.0
 offset_top = -60.0
 offset_right = 50.0
 offset_bottom = -54.0
+_levelLow = 2
+_levelMedium = 6
+_maxHealth = 10
+_startHealth = 10

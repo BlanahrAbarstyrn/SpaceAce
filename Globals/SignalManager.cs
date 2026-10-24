@@ -8,10 +8,18 @@ public partial class SignalManager : Node
 	
 	[Signal]
 	public delegate void OnSpawnPoolObjectEventHandler(Vector2 pos, PackedScene scene);
-
+	
 	public static void EmitOnSpawnPoolObject(Vector2 pos, PackedScene scene)
 	{
 		Instance.EmitSignal(SignalName.OnSpawnPoolObject, pos, scene);
+	}
+	
+	[Signal]
+	public delegate void OnPlayerTakeDamageEventHandler(int damage);
+
+	public static void EmitOnPlayerTakeDamage(int damage)
+	{
+		Instance.EmitSignal(SignalName.OnPlayerTakeDamage, damage);
 	}
 	
 	// Called when the node enters the scene tree for the first time.

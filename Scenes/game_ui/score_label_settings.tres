@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cnd0j7v4aswt4"]
+
+[ext_resource type="FontFile" uid="uid://cn44u8ysia4jj" path="res://Assets/Fonts/Audiowide-Regular.ttf" id="1_buxkp"]
+
+[resource]
+font = ExtResource("1_buxkp")
+font_size = 42

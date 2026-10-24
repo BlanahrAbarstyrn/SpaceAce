@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ckbeua75uv8ab" path="res://Scenes/enemy_base/EnemyBase.cs" id="1_5mq4s"]
 [ext_resource type="PackedScene" uid="uid://bsqakaocrbhfg" path="res://Scenes/health_bar/health_bar.tscn" id="2_06jar"]
 [ext_resource type="PackedScene" uid="uid://bo7mfvx3jabwa" path="res://Scenes/explosion/explosion.tscn" id="2_p43x5"]
+[ext_resource type="PackedScene" uid="uid://cl1l5dcu8dqwk" path="res://Scenes/homing_missile/homing_missile.tscn" id="3_3855y"]
 
 [node name="EnemyBase" type="PathFollow2D" unique_id=1580803156 node_paths=PackedStringArray("_muzzle", "_hitArea", "_healthBar", "_laserTimer")]
 rotates = false
@@ -12,6 +13,7 @@ _muzzle = NodePath("Muzzle")
 _hitArea = NodePath("HitArea")
 _healthBar = NodePath("HealthBar")
 _explosionScene = ExtResource("2_p43x5")
+_homingMissile = ExtResource("3_3855y")
 _laserTimer = NodePath("LaserTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1832030770]
