@@ -9,9 +9,11 @@ public partial class Player : Area2D
 	[Export] private float _speed = 250.0f;
 	[Export] private PackedScene _playerLaser;
 	[Export] private Marker2D _shootPoint;
+	[Export] private int _collisionDamage = 25;
 
 	private const float Margin = 64.0f;
 	public const string GroupName = "player";
+	public const string CollisionGroupName = "Collision";
 	
 	private Vector2 _upperLeftCorner;
 	private Vector2 _lowerRightCorner;
@@ -60,6 +62,11 @@ public partial class Player : Area2D
 		if (area is Bullet bullet)
 		{
 			SignalManager.EmitOnPlayerTakeDamage(bullet.Damage);
+		}
+		else if (area.IsInGroup(CollisionGroupName))
+		{
+			GD.Print("Collision damage", area.Name);
+			SignalManager.EmitOnPlayerTakeDamage(_collisionDamage);
 		}
 	}
 }

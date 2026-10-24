@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SpaceAce.Scenes.asteroid;
+using SpaceAce.Scenes.power_up;
 
 namespace SpaceAce.Scenes.spawner;
 public partial class Spawner : Node
@@ -9,6 +10,8 @@ public partial class Spawner : Node
 	[Export] private Path2D _targetSpawnPath;
 	[Export] private PackedScene _asteroidScene;
 	[Export] private Timer _asteroidSpawnTimer;
+	[Export] private PackedScene _powerUpScene;
+	[Export] private Timer _powerUpSpawnTimer;
 
 	private Vector2 GetRandomPointOnCurve(Curve2D curve)
 	{
@@ -28,6 +31,7 @@ public partial class Spawner : Node
 	public override void _Ready()
 	{
 		_asteroidSpawnTimer.Timeout += OnAsteroidSpawnTimerTimeout;
+		_powerUpSpawnTimer.Timeout += OnPowerUpSpawnTimerTimeout;
 		OnAsteroidSpawnTimerTimeout();
 	}
 	
@@ -36,5 +40,11 @@ public partial class Spawner : Node
 		Asteroid asteroid = _asteroidScene.Instantiate<Asteroid>();
 		SetRandomSpawnAndTarget(asteroid);
 		AddChild(asteroid);
+	}
+
+	private void OnPowerUpSpawnTimerTimeout()
+	{
+		PowerUp powerUp = _powerUpScene.Instantiate<PowerUp>();
+		AddChild(powerUp);
 	}
 }

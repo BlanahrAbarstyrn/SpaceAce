@@ -27,6 +27,13 @@ public partial class GameUi : Control
 		_gameOverColorRect.Hide();
 		_healthBarScene.OnDied += OnDied;
 		SignalManager.Instance.OnPlayerTakeDamage += OnPlayerTakeDamage;
+		SignalManager.Instance.OnPlayerHealthBoost += OnPlayerHealthBoost;
+	}
+
+	public override void _ExitTree()
+	{
+		SignalManager.Instance.OnPlayerTakeDamage -= OnPlayerTakeDamage;
+		SignalManager.Instance.OnPlayerHealthBoost -= OnPlayerHealthBoost;
 	}
 	
 	private void OnDied()
@@ -40,5 +47,10 @@ public partial class GameUi : Control
 	private void OnPlayerTakeDamage(int damage)
 	{
 		_healthBarScene.TakeDamage(damage);
+	}
+
+	private void OnPlayerHealthBoost(int boost)
+	{
+		_healthBarScene.IncrementValue(boost);
 	}
 }

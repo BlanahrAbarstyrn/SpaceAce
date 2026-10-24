@@ -13,14 +13,14 @@ _speed = 200.0
 _bulletScene = ExtResource("2_8mmk2")
 _bulletWaitTime = 5.0
 _bulletWaitTimeVariance = 2.0
-_spawnChance = 0.3
+_spawnChance = 0.2
 
 [node name="Sprite2D" parent="." index="0" unique_id=1832030770]
 rotation = 3.1415927
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_43h0y")
 
-[node name="CollisionShape2D" parent="HitArea" parent_id_path=PackedInt32Array(1490482353) index="0" unique_id=1837252726]
+[node name="CollisionShape2D" parent="EnemyHitArea" parent_id_path=PackedInt32Array(1490482353) index="0" unique_id=1837252726]
 position = Vector2(-2.1316282e-14, -5.9999995)
 rotation = 1.5707964
 scale = Vector2(0.8, 0.8)

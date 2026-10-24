@@ -19,7 +19,7 @@ height = 80.0
 
 [node name="HomingMissile" type="Node2D" unique_id=102629725 node_paths=PackedStringArray("_hitArea", "_invincibleTimer")]
 script = ExtResource("1_p3fmc")
-_hitArea = NodePath("HitArea")
+_hitArea = NodePath("MissileHitArea")
 _speed = 500.0
 _rotationSpeed = 0.8
 _invincibleTimer = NodePath("Timer")
@@ -48,11 +48,11 @@ rotation = 1.5707964
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_8ird0")
 
-[node name="HitArea" type="Area2D" parent="." unique_id=598483882]
-collision_layer = 72
-collision_mask = 37
+[node name="MissileHitArea" type="Area2D" parent="." unique_id=598483882 groups=["Collision"]]
+collision_layer = 2
+collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1689547989]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MissileHitArea" unique_id=1689547989]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8ird0")
 

@@ -10,7 +10,7 @@ rotates = false
 loop = false
 script = ExtResource("1_5mq4s")
 _muzzle = NodePath("Muzzle")
-_hitArea = NodePath("HitArea")
+_hitArea = NodePath("EnemyHitArea")
 _healthBar = NodePath("HealthBar")
 _explosionScene = ExtResource("2_p43x5")
 _homingMissile = ExtResource("3_3855y")
@@ -18,11 +18,11 @@ _laserTimer = NodePath("LaserTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1832030770]
 
-[node name="HitArea" type="Area2D" parent="." unique_id=1490482353]
+[node name="EnemyHitArea" type="Area2D" parent="." unique_id=1490482353 groups=["Collision"]]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1837252726]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitArea" unique_id=1837252726]
 
 [node name="LaserTimer" type="Timer" parent="." unique_id=1120059897]
 one_shot = true

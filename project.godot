@@ -29,6 +29,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="SpaceAce"
 
+[global_group]
+
+Collision="Can collide and deal damage to player without itself being destroyed"
+
 [input]
 
 up={

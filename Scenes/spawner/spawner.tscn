@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bv0858j3hixp8" path="res://Scenes/spawner/Spawner.cs" id="1_u4pts"]
 [ext_resource type="PackedScene" uid="uid://ipwqx3tsxg6h" path="res://Scenes/asteroid/asteroid.tscn" id="2_7jrkt"]
+[ext_resource type="PackedScene" uid="uid://d3ot8sudqydmg" path="res://Scenes/power_up/power_up.tscn" id="3_m7uwi"]
 
 [sub_resource type="Curve2D" id="Curve2D_7jrkt"]
 _data = {
@@ -15,12 +16,14 @@ _data = {
 }
 point_count = 5
 
-[node name="Spawner" type="Node" unique_id=761527286 node_paths=PackedStringArray("_asteroidSpawnPath", "_targetSpawnPath", "_asteroidSpawnTimer")]
+[node name="Spawner" type="Node" unique_id=761527286 node_paths=PackedStringArray("_asteroidSpawnPath", "_targetSpawnPath", "_asteroidSpawnTimer", "_powerUpSpawnTimer")]
 script = ExtResource("1_u4pts")
 _asteroidSpawnPath = NodePath("AsteroidSpawnPath")
 _targetSpawnPath = NodePath("AsteroidTargetPath")
 _asteroidScene = ExtResource("2_7jrkt")
 _asteroidSpawnTimer = NodePath("AsteroidTimer")
+_powerUpScene = ExtResource("3_m7uwi")
+_powerUpSpawnTimer = NodePath("PowerUpTimer")
 
 [node name="AsteroidTimer" type="Timer" parent="." unique_id=1372652215]
 wait_time = 10.0
@@ -31,3 +34,7 @@ curve = SubResource("Curve2D_7jrkt")
 
 [node name="AsteroidTargetPath" type="Path2D" parent="." unique_id=573876586]
 curve = SubResource("Curve2D_m7uwi")
+
+[node name="PowerUpTimer" type="Timer" parent="." unique_id=1467522439]
+wait_time = 15.0
+autostart = true
