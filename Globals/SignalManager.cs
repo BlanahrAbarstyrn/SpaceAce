@@ -43,5 +43,4 @@ public partial class SignalManager : Node
 	{
 		Instance = this;
 	}
-	
 }

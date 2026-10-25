@@ -13,4 +13,13 @@ public static class SpaceUtils
     {
         timer.Start(target + GD.RandRange(-variance, variance));
     }
+    
+    public static bool IsJoyVibrating(int device)
+    {
+        GodotObject inputObj = Engine.GetSingleton("Input");
+        // Get the remaining duration of the vibration
+        float duration = (float)inputObj.Call("get_joy_vibration_duration", device);
+        // If duration is greater than 0, it is currently vibrating
+        return  duration > 0;
+    }
 }

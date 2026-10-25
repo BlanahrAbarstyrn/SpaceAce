@@ -14,20 +14,20 @@ public class ScenePool
 
 	private int ActiveCount => _items.Count(n => n.Visible);
 
-	private void Log(string msg)
-	{
-		if (DebugPool)
-		{
-			GD.Print($"[ScenePool: {_packedScene.ResourcePath}] {msg}");
-		}
-	}
+	// private void Log(string msg)
+	// {
+	// 	if (DebugPool)
+	// 	{
+	// 		GD.Print($"[ScenePool: {_packedScene.ResourcePath}] {msg}");
+	// 	}
+	// }
 
 	public ScenePool(int initialCount, PackedScene scene, Node container)
 	{
 		_container = container;
 		_packedScene = scene;
 		
-		Log($"Creating pool with {initialCount} items");
+		//Log($"Creating pool with {initialCount} items");
 
 		for (int i = 0; i < initialCount; i++)
 		{
@@ -45,26 +45,26 @@ public class ScenePool
 		newItem.Hide();
 		_container.AddChild(newItem);
 		_items.Add(newItem);
-		Log($"new instance {newItem.Name} total: {_items.Count}");
+		//Log($"new instance {newItem.Name} total: {_items.Count}");
 		return newItem;
 	}
 
 	public void ActivateNext(Vector2 position)
 	{
-		Log($"ActivateNext Active: {ActiveCount}/{_items.Count}");
+		//Log($"ActivateNext Active: {ActiveCount}/{_items.Count}");
 
 		foreach (var node in _items)
 		{
 			if (!node.Visible)
 			{
-				Log($"Reusing instance {node.Name}");
+				//Log($"Reusing instance {node.Name}");
 				node.Show();
 				node.GlobalPosition = position;
 				((iPool_Item)node).Activate();
 				return;
 			}
 		}
-		Log($"Nothing free, extending pool");
+		//Log($"Nothing free, extending pool");
 		Node2D newItem = AddNewItem();
 		newItem.Show();
 		newItem.GlobalPosition = position;

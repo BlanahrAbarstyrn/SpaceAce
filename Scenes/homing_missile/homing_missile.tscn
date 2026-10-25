@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bkdyygvheb3kc" path="res://Assets/Textures/ParticleDot16.png" id="1_mc4vy"]
 [ext_resource type="Script" uid="uid://8xsla355mxnf" path="res://Scenes/homing_missile/HomingMissile.cs" id="1_p3fmc"]
 [ext_resource type="PackedScene" uid="uid://bo7mfvx3jabwa" path="res://Scenes/explosion/explosion.tscn" id="2_k3vt8"]
+[ext_resource type="AudioStream" uid="uid://b744tv2vm4c41" path="res://Assets/Sounds/whistle-firework-missile-loop.mp3" id="5_ygr7f"]
 
 [sub_resource type="Curve" id="Curve_mc4vy"]
 _data = [Vector2(0, 0.7981651), 0.0, 0.0, 0, 0, Vector2(0.13173652, 1), 0.0, 0.0, 0, 0, Vector2(0.38622752, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -17,13 +18,14 @@ colors = PackedColorArray(0.5390161, 0.024848005, 0.28470108, 1, 0.10980392, 0.4
 radius = 23.0
 height = 80.0
 
-[node name="HomingMissile" type="Node2D" unique_id=102629725 node_paths=PackedStringArray("_hitArea", "_invincibleTimer")]
+[node name="HomingMissile" type="Node2D" unique_id=102629725 node_paths=PackedStringArray("_hitArea", "_invincibleTimer", "_flyingSound")]
 script = ExtResource("1_p3fmc")
 _hitArea = NodePath("MissileHitArea")
 _speed = 500.0
 _rotationSpeed = 0.8
 _invincibleTimer = NodePath("Timer")
 _explosionScene = ExtResource("2_k3vt8")
+_flyingSound = NodePath("FlyingSound")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=917532617]
 position = Vector2(-40, 0)
@@ -58,3 +60,7 @@ shape = SubResource("CapsuleShape2D_8ird0")
 
 [node name="Timer" type="Timer" parent="." unique_id=1041698343]
 one_shot = true
+
+[node name="FlyingSound" type="AudioStreamPlayer2D" parent="." unique_id=952112410]
+stream = ExtResource("5_ygr7f")
+volume_db = 5.0

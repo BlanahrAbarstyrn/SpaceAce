@@ -40,7 +40,6 @@ public partial class GameUi : Control
 		SignalManager.Instance.OnPlayerTakeDamage -= OnPlayerTakeDamage;
 		SignalManager.Instance.OnPlayerHealthBoost -= OnPlayerHealthBoost;
 		SignalManager.Instance.OnScorePoints -= UpdateScore;
-		Input.StopJoyVibration(0);
 	}
 	
 	private void OnDied()
@@ -48,6 +47,7 @@ public partial class GameUi : Control
 		_gameMusic.Stop();
 		_gameOverSound.Play();
 		_gameOverColorRect.Show();
+		Input.StopJoyVibration(0);
 		GetTree().Paused = true;
 	}
 

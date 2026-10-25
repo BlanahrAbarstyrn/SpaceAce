@@ -6,6 +6,8 @@ using SpaceAce.Scenes.bullet;
 using SpaceAce.Scenes.health_bar;
 using SpaceAce.Scenes.player;
 
+
+
 namespace SpaceAce.Scenes.enemy_base;
 
 public partial class EnemyBase : PathFollow2D
@@ -24,17 +26,15 @@ public partial class EnemyBase : PathFollow2D
 	
 	private Player _player;
 
+	private bool _isVibrating = SpaceUtils.IsJoyVibrating(0);
+	
+
 	public override void _Ready()
 	{
 		_laserTimer.Timeout += OnLaserTimerTimeout;
 		_healthBar.OnDied += OnHealthBarDied;
 		_hitArea.AreaEntered += OnHitAreaEntered;
 		SpaceUtils.SetAndStartTimer(_laserTimer, _bulletWaitTime, _bulletWaitTimeVariance);
-	}
-	
-	public override void _ExitTree()
-	{
-		Input.StopJoyVibration(0);
 	}
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,7 +91,15 @@ public partial class EnemyBase : PathFollow2D
 	{
 		if (area is Player)
 		{
-			Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			if (_isVibrating)
+			{
+				Input.StopJoyVibration(0);
+				Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			}
+			else
+			{
+				Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			}
 			SignalManager.EmitOnSpawnPoolObject(GlobalPosition, _explosionScene);
 			OnHealthBarDied();
 		}

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using SpaceAce.Classes;
 using SpaceAce.Globals;
 using SpaceAce.Scenes.player;
 
@@ -20,6 +21,7 @@ public partial class Asteroid : Node2D
 	Vector2 _velocity = Vector2.Right;
 	
 	private Player _player;
+	private bool _isVibrating = SpaceUtils.IsJoyVibrating(0);
 	
 	public void SetSpawnAndTarget(Vector2 spawnPosition, Vector2 targetPosition)
 	{
@@ -55,7 +57,15 @@ public partial class Asteroid : Node2D
 	{
 		if (area is Player)
 		{
-			Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			if (_isVibrating)
+			{
+				Input.StopJoyVibration(0);
+				Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			}
+			else
+			{
+				Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			}
 			Blowup();
 		}
 		else

@@ -14,9 +14,11 @@ public partial class HomingMissile : Node2D, iPool_Item
 	[Export] private Timer _invincibleTimer;
 	[Export] private PackedScene _explosionScene;
 	[Export] private int _points = 25;
+	[Export] private AudioStreamPlayer2D _flyingSound;
 	
 	private Player _player;
 	private bool _isInvincible;
+	private bool _isVibrating = SpaceUtils.IsJoyVibrating(0);
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -29,11 +31,6 @@ public partial class HomingMissile : Node2D, iPool_Item
 			GD.PrintErr("HomingMissile: No player found");
 		}
 		Deactivate();
-	}
-	
-	public override void _ExitTree()
-	{
-		Input.StopJoyVibration(0);
 	}
 	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,6 +54,7 @@ public partial class HomingMissile : Node2D, iPool_Item
 		SpaceUtils.ActivateArea2D(_hitArea, true);
 		_invincibleTimer.Start();
 		_isInvincible = true;
+		_flyingSound.Play();
 	}
 
 	public void Deactivate()
@@ -66,13 +64,22 @@ public partial class HomingMissile : Node2D, iPool_Item
 		SpaceUtils.ActivateArea2D(_hitArea, false);
 		_invincibleTimer.Stop();
 		_isInvincible = false;
+		_flyingSound.Stop();
 	}
 
 	private void OnHitAreaEntered(Area2D area)
 	{
 		if (area is Player)
 		{
-			Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			if (_isVibrating)
+			{
+				Input.StopJoyVibration(0);
+				Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			}
+			else
+			{
+				Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			}
 			SignalManager.EmitOnSpawnPoolObject(GlobalPosition, _explosionScene);
 			Deactivate();
 		}
