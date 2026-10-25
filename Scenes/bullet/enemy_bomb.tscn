@@ -16,7 +16,8 @@ _bulletSpeed = 100.0
 _bulletDirection = Vector2(0, 1)
 _towardsPlayer = true
 _explosionScene = ExtResource("2_baw2g")
-_damage = 5
+_damage = 15
+_points = 3
 
 [node name="Sprite2D" parent="." index="0" unique_id=1627973769]
 scale = Vector2(0.6, 0.6)

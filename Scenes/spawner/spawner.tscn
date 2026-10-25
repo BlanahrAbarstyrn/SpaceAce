@@ -36,5 +36,5 @@ curve = SubResource("Curve2D_7jrkt")
 curve = SubResource("Curve2D_m7uwi")
 
 [node name="PowerUpTimer" type="Timer" parent="." unique_id=1467522439]
-wait_time = 15.0
+wait_time = 42.0
 autostart = true

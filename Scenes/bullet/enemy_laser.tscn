@@ -9,13 +9,13 @@
 radius = 3.0
 height = 60.0
 
-[node name="EnemyLaser" unique_id=1054310593 node_paths=PackedStringArray("_explosionMarker") instance=ExtResource("1_xdda8")]
+[node name="EnemyLaser" unique_id=1054310593 instance=ExtResource("1_xdda8")]
 collision_layer = 8
 collision_mask = 1
 _bulletDirection = Vector2(0, 1)
 _explosionScene = ExtResource("2_kpmi4")
-_explosionMarker = NodePath("ExplosionPosition")
 _usesMarker = true
+_damage = 10
 
 [node name="Sprite2D" parent="." index="0" unique_id=1627973769]
 scale = Vector2(0.5, 0.5)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b601w2cphrcx6" path="res://Scenes/asteroid/AsteroidExplosion.cs" id="1_g68tm"]
 [ext_resource type="PackedScene" uid="uid://c7yymyd3p76b6" path="res://Scenes/asteroid/asteroid_piece.tscn" id="2_0l1fq"]
+[ext_resource type="AudioStream" uid="uid://dhavfqmyg4gtl" path="res://Assets/Sounds/AsteroidExplosion.wav" id="2_c1i4a"]
 
 [node name="AsteroidExplosion" type="Node2D" unique_id=269231563 node_paths=PackedStringArray("_timer", "_piecesHolder", "_asteroidExplosionSound")]
 script = ExtResource("1_g68tm")
@@ -14,6 +15,8 @@ wait_time = 3.0
 one_shot = true
 
 [node name="AsteroidExplosionSound" type="AudioStreamPlayer" parent="." unique_id=1301373782]
+stream = ExtResource("2_c1i4a")
+volume_db = -5.0
 
 [node name="Pieces" type="Node2D" parent="." unique_id=473957557]
 

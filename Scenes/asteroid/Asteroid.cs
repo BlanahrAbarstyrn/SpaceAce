@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using SpaceAce.Globals;
+using SpaceAce.Scenes.player;
 
 namespace SpaceAce.Scenes.asteroid;
 public partial class Asteroid : Node2D
@@ -14,8 +15,11 @@ public partial class Asteroid : Node2D
 	[Export] private Sprite2D _sprite;
 	[Export] private Area2D _hitArea;
 	[Export] private Godot.Collections.Array<Texture2D> _textures;
+	[Export] private int _points = 2;
 	
 	Vector2 _velocity = Vector2.Right;
+	
+	private Player _player;
 	
 	public void SetSpawnAndTarget(Vector2 spawnPosition, Vector2 targetPosition)
 	{
@@ -32,7 +36,7 @@ public partial class Asteroid : Node2D
 		_hitArea.AreaEntered += OnHitAreaEntered;
 		_lifeTimer.Timeout += Blowup;
 	}
-
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
@@ -49,10 +53,19 @@ public partial class Asteroid : Node2D
 
 	private void OnHitAreaEntered(Area2D area)
 	{
-		_hit--;
-		if (_hit <= 0)
+		if (area is Player)
 		{
+			Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
 			Blowup();
+		}
+		else
+		{
+			_hit--;
+			if (_hit <= 0)
+			{
+				Blowup();
+				SignalManager.EmitOnScorePoints(_points);
+			}
 		}
 	}
 }

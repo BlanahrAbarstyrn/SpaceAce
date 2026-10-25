@@ -13,6 +13,7 @@ public partial class HomingMissile : Node2D, iPool_Item
 	[Export] private float _rotationSpeed = 2.0f;
 	[Export] private Timer _invincibleTimer;
 	[Export] private PackedScene _explosionScene;
+	[Export] private int _points = 25;
 	
 	private Player _player;
 	private bool _isInvincible;
@@ -29,7 +30,12 @@ public partial class HomingMissile : Node2D, iPool_Item
 		}
 		Deactivate();
 	}
-
+	
+	public override void _ExitTree()
+	{
+		Input.StopJoyVibration(0);
+	}
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
@@ -64,8 +70,15 @@ public partial class HomingMissile : Node2D, iPool_Item
 
 	private void OnHitAreaEntered(Area2D area)
 	{
+		if (area is Player)
+		{
+			Input.StartJoyVibration(0, 1.0f, 1.0f, 1.0f);
+			SignalManager.EmitOnSpawnPoolObject(GlobalPosition, _explosionScene);
+			Deactivate();
+		}
 		if (_isInvincible) return;
 		SignalManager.EmitOnSpawnPoolObject(GlobalPosition, _explosionScene);
+		SignalManager.EmitOnScorePoints(_points);
 		Deactivate();
 	}
 

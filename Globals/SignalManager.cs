@@ -30,6 +30,14 @@ public partial class SignalManager : Node
 		Instance.EmitSignal(SignalName.OnPlayerHealthBoost, boost);
 	}
 	
+	[Signal]
+	public delegate void OnScorePointsEventHandler(int points);
+
+	public static void EmitOnScorePoints(int points)
+	{
+		Instance.EmitSignal(SignalName.OnScorePoints,  points);
+	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

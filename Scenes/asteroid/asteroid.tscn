@@ -23,7 +23,7 @@ texture = ExtResource("1_e7utm")
 
 [node name="AsteroidHitArea" type="Area2D" parent="." unique_id=156344967 groups=["Collision"]]
 collision_layer = 32
-collision_mask = 4
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidHitArea" unique_id=1233898830]
 shape = SubResource("CircleShape2D_e7utm")

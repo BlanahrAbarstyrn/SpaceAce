@@ -13,7 +13,7 @@ _speed = 200.0
 _bulletScene = ExtResource("2_8mmk2")
 _bulletWaitTime = 5.0
 _bulletWaitTimeVariance = 2.0
-_spawnChance = 0.2
+_spawnChance = 0.15
 
 [node name="Sprite2D" parent="." index="0" unique_id=1832030770]
 rotation = 3.1415927
@@ -29,7 +29,7 @@ shape = SubResource("CapsuleShape2D_5gsed")
 [node name="LaserTimer" parent="." index="2" unique_id=1120059897]
 wait_time = 1.5
 
-[node name="HealthBar" parent="." index="4" unique_id=1442029736]
+[node name="HealthBar" parent="." index="4" unique_id=1442029736 groups=["HasEnemyHealthBar"]]
 offset_left = -50.0
 offset_top = -60.0
 offset_right = 50.0

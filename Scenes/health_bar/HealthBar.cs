@@ -1,11 +1,14 @@
 using Godot;
 using System;
+using SpaceAce.Globals;
+using SpaceAce.Scenes.player;
 
 namespace SpaceAce.Scenes.health_bar;
 public partial class HealthBar : TextureProgressBar
 {
 	[Signal]
 	public delegate void OnDiedEventHandler();
+	public const string HasHealthBarGroupName = "HasEnemyHealthBar";
 	
 	private static readonly Color ColorDanger = new ("9A33FF");
 	private static readonly Color ColorMiddleHealth = new ("FF00CC");
@@ -15,6 +18,7 @@ public partial class HealthBar : TextureProgressBar
 	[Export] private int _levelMedium = 60;
 	[Export] private int _maxHealth = 100;
 	[Export] private int _startHealth = 100;
+	[Export] private int _points = 5;
 
 	private bool _isDead;
 	
@@ -50,6 +54,10 @@ public partial class HealthBar : TextureProgressBar
 		{
 			_isDead = true;
 			EmitSignal(SignalName.OnDied);
+			if (IsInGroup(HasHealthBarGroupName))
+			{
+				SignalManager.EmitOnScorePoints(_points);
+			}
 		}
 		SetColor();
 	}

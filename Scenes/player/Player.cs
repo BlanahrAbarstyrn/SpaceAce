@@ -65,7 +65,7 @@ public partial class Player : Area2D
 		}
 		else if (area.IsInGroup(CollisionGroupName))
 		{
-			GD.Print("Collision damage", area.Name);
+			//GD.Print("Collision damage", area.Name);
 			SignalManager.EmitOnPlayerTakeDamage(_collisionDamage);
 		}
 	}

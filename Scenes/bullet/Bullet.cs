@@ -19,6 +19,7 @@ public partial class Bullet : Area2D, iPool_Item
 	[Export] private bool _usesMarker;
 	[Export] private float _explosionMargin = 30.0f;
 	[Export] private int _damage = 2;
+	[Export] private int _points = 5;
 	
 	public int Damage => _damage;
 	
@@ -47,7 +48,12 @@ public partial class Bullet : Area2D, iPool_Item
 		Deactivate(); // start hidden and ready to use
 		//Activate(); // temporary testing
 	}
-
+	
+	public override void _ExitTree()
+	{
+		Input.StopJoyVibration(0);
+	}
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
@@ -61,20 +67,27 @@ public partial class Bullet : Area2D, iPool_Item
 
 	private void OnScreenExited()
 	{
-		GD.Print($"{Name} OnScreenExited");
+		//GD.Print($"{Name} OnScreenExited");
 		Deactivate();
 	}
 
 	private void OnAreaEntered(Area2D area)
 	{
-		GD.Print($"{Name} OnAreaEntered");
+		//GD.Print($"{Name} OnAreaEntered");
 
 		var explosionPosition = _explosionMarker.GlobalPosition;
+		
+		if (area is Player)
+		{
+			Input.StartJoyVibration(0, 1.0f, 1.0f, 0.5f);
+			
+		}
 		
 		if (!_usesMarker)
 		{
 			Vector2 explosionDirection = GlobalPosition.DirectionTo(area.GlobalPosition);
 			explosionPosition = GlobalPosition + explosionDirection * _explosionMargin;
+			SignalManager.EmitOnScorePoints(_points);
 		}
 		
 		SignalManager.EmitOnSpawnPoolObject(

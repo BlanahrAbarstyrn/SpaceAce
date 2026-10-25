@@ -6,7 +6,7 @@ using SpaceAce.Contracts;
 namespace SpaceAce.Classes;
 public class ScenePool
 {
-	private const bool DebugPool = true;
+	private const bool DebugPool = false;
 
 	private readonly List<Node2D> _items = new();
 	private readonly PackedScene _packedScene;
